@@ -1,25 +1,29 @@
-//USE CASE: If user creates an Account, if user provides Billing address but not Shipping address, write a logic to populate Shipping address same as Billing address
+//USE CASE: If user creates an Account, and user provides Billing address but not Shipping address, write a logic to populate Shipping address same as Billing address
+            and also check if annual revenue provided by the user is less than 1000 then throw an error to the user.
  
 trigger AccountTrigger on Account (before insert) {
     
     if(Trigger.isBefore && Trigger.isInsert){
         
          for(Account accRec: Trigger.new){
+
+         if(accRec.AnnualRevenue < 1000)
+            accRec.addError('Annual Revenue cannot be less than 1000');
              
            if(accRec.ShippingCity == NULL)
-             accRec.ShippingCity = accRec.BillingCity;
+              accRec.ShippingCity = accRec.BillingCity;
              
            if(accRec.ShippingCountry == NULL)
-             accRec.ShippingCountry = accRec.BillingCountry;
+              accRec.ShippingCountry = accRec.BillingCountry;
              
            if(accRec.ShippingState == NULL)
-             accRec.ShippingState = accRec.BillingState;
+              accRec.ShippingState = accRec.BillingState;
              
            if(accRec.ShippingStreet == NULL)
-             accRec.ShippingStreet = accRec.BillingStreet;
+              accRec.ShippingStreet = accRec.BillingStreet;
              
            if(accRec.ShippingPostalCode == NULL)
-             accRec.ShippingPostalCode = accRec.BillingPostalCode;
+              accRec.ShippingPostalCode = accRec.BillingPostalCode;
          }
     }
   
