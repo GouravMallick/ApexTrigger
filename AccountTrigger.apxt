@@ -1,5 +1,5 @@
 //USE CASE: If user creates an Account, if user provides Billing address but not Shipping address, write a logic to populate Shipping address same as Billing address
-
+ 
 trigger AccountTrigger on Account (before insert) {
     
     if(Trigger.isBefore && Trigger.isInsert){
