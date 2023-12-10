@@ -2,6 +2,7 @@
 //USE CASE 2: If user creates an Account, also check if annual revenue provided by the user is less than 1000 then throw an error to the user.
 // USE CASE 3: when user create an account, write a logic to create a account with same name and associate account and contact
 // USE CASE 4: when user update an account record, if user changes account name, throw an error "Account name once created acnnot be modified"
+ // USE CASE 5: when user update an account record, if billing address is changed, update all its child contacts mail address field same as account billing address
 trigger AccountTrigger on Account (before insert) {
     
     if(Trigger.isBefore && Trigger.isInsert){
@@ -51,7 +52,7 @@ trigger AccountTrigger on Account (before insert) {
              }
          }
     }
-    // USE CASE 5: when user update an account record, if billing address is changed, update all its child contacts mail address field same as account billing address
+    // USE CASE 5
 
     if(Trigger.isAfter && Trigger.isUpdate){
         
